@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UserSignupRequestDTO {
-    private String id; // 없에야함
     private String password;
     private String name;
     private String email;

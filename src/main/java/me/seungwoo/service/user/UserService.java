@@ -22,13 +22,12 @@ public class UserService {
     public User registerUser(UserSignupRequestDTO request) {
         // ✅ Email
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new IllegalArgumentException("이미 존재하는 ID입니다.");
+            throw new IllegalArgumentException("이미 존재하는 Email입니다.");
         }
         // ✅ 비밀번호 암호화
         String encodedPassword = passwordEncoder.encode(request.getPassword());
         // ✅ User 엔티티 생성 (암호화된 비밀번호로 저장)
         User user = new User(
-                request.getId(),
                 encodedPassword,
                 request.getName(),
                 request.getEmail(),

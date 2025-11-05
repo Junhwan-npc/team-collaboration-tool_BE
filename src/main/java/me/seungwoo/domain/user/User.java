@@ -37,7 +37,7 @@ public class User {
     private String field;
 
 
-    public User(String id, String password, String name, String email, String phone, String field) {
+    public User(String password, String name, String email, String phone, String field) {
         this.password = password;
         this.name = name;
         this.email = email;
