@@ -1,13 +1,20 @@
 package me.seungwoo.config;
 
+import lombok.RequiredArgsConstructor;
+import me.seungwoo.config.jwt.JwtAuthenticationFilter;
+import me.seungwoo.config.jwt.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final JwtTokenProvider jwtTokenProvider; // ✅ 주입
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -20,7 +27,7 @@ public class SecurityConfig {
                 // ✅ CSRF 완전 비활성화 (POST, PUT, DELETE 전부 허용)
                 .csrf(csrf -> csrf.disable())
 
-                // ✅ CORS도 완전히 비활성화
+                // ✅ CORS 완전 비활성화
                 .cors(cors -> cors.disable())
 
                 // ✅ H2 콘솔 frame 허용
@@ -30,12 +37,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/users/signup", "/api/users/login").permitAll()
-                        .anyRequest().permitAll() // 💥 일단 인증 전부 풀어서 테스트
+                        .anyRequest().authenticated() // 💡 설정/수정 등은 토큰 필요하도록 변경
                 )
 
                 // ✅ 기본 로그인 UI 및 Basic Auth 비활성화
                 .formLogin(login -> login.disable())
-                .httpBasic(basic -> basic.disable());
+                .httpBasic(basic -> basic.disable())
+
+                // ✅ JWT 필터 추가 (UsernamePasswordAuthenticationFilter 전에 실행)
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
