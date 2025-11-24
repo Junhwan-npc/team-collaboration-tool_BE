@@ -10,6 +10,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // ✅ 아이디 중복체크용
     boolean existsByEmail(String email);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 58ca9b859f006791658d47197024321ad7d52715
 }

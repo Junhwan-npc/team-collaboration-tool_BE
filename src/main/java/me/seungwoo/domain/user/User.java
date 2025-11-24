@@ -37,7 +37,11 @@ public class User {
     private String field;
 
 
+<<<<<<< HEAD
     public User(String id, String password, String name, String email, String phone, String field) {
+=======
+    public User(String password, String name, String email, String phone, String field) {
+>>>>>>> 58ca9b859f006791658d47197024321ad7d52715
         this.password = password;
         this.name = name;
         this.email = email;
