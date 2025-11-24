@@ -1,6 +1,8 @@
 package me.seungwoo.domain.timepoll;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.seungwoo.domain.project.Project;
@@ -14,6 +16,8 @@ import java.util.List;
 @Table(name = "time_polls")
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TimePoll {
 
     @Id

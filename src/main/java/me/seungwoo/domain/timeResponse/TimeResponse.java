@@ -1,6 +1,8 @@
 package me.seungwoo.domain.timeResponse;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.seungwoo.domain.timepoll.TimePoll;
@@ -11,6 +13,8 @@ import java.time.LocalDateTime;
 @Table(name = "time_response")
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TimeResponse {
 
     @Id

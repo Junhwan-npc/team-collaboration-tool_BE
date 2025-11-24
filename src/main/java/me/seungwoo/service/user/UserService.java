@@ -26,7 +26,7 @@ public class UserService {
         }
 
         // ✅ 2. ID 중복 체크
-        if (userRepository.existsById(request.getId())) {
+        if (userRepository.existsByEmail(request.getEmail())) {
             throw new IllegalArgumentException("이미 존재하는 ID입니다.");
         }
 
@@ -35,7 +35,7 @@ public class UserService {
 
         // ✅ 4. User 엔티티 생성 (암호화된 비밀번호로 저장)
         User user = new User(
-                request.getId(),
+                request.getEmail(),
                 encodedPassword,
                 request.getName(),
                 request.getEmail(),

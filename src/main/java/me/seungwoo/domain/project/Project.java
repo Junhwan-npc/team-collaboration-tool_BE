@@ -34,4 +34,8 @@ public class Project {
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Post> posts;
+
+    public Long getPk() {
+        return projectPk;
+    }
 }

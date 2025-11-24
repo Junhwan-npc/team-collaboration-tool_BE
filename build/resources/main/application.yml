@@ -35,3 +35,12 @@ spring:
   h2:
     console:
       enabled: true
+
+file:
+  dir: "C:/upload/"  # 윈도우라면 폴더를 미리 만들어두세요.
+  # dir: "/Users/seungwoo/upload/" # 맥/리눅스라면
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB

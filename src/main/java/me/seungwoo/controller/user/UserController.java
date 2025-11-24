@@ -20,6 +20,6 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody UserSignupRequest request) {
         User savedUser = userService.registerUser(request);
-        return ResponseEntity.ok("회원가입 성공 ✅ (비밀번호 암호화 완료)\nID: " + savedUser.getId());
+        return ResponseEntity.ok("회원가입 성공 ✅ (비밀번호 암호화 완료)\nID: " + savedUser.getEmail());
     }
 }
